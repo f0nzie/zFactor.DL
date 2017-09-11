@@ -1,0 +1,10 @@
+Package: zFactor.DL
+Type: Package
+Title: Deep Learning Application for Hydrocarbon Gases Compressibility
+Version: 0.1.0
+Maintainer: Alfonso R. Reyes <alfonso.reyes@oilgainsanalytics.com>
+Description: Neural Network application for the generation of
+      a correlation for hydrocarbon gases compressibility or z factor.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
