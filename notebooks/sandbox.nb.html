@@ -142,7 +142,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("02-convert_to_tidy_data.Rmd");
+  window.initializeSourceEmbed("sandbox.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -172,106 +172,55 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="convert-multiple-columns-to-tidy-dataset" class="section level2">
+<h2>convert multiple columns to tidy dataset</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh4bHN4KVxucmF3X2ZpbGUgPC0gc3lzdGVtLmZpbGUoXCJleHRkYXRhXCIsIFwiU0tfZGF0YS54bHNcIiwgcGFja2FnZSA9IFwiekZhY3Rvci5ETFwiKVxuXG4jIHJlYWQgdGhlIGxvdyBwcmVzc3VyZSB2YWx1ZXMgb2YgUHByXG4gIHJhd19kYXRhIDwtIHJlYWQueGxzeChyYXdfZmlsZSwgc2hlZXRJbmRleCA9IDEpXG4gIFxuYGBgIn0= -->
-<pre class="r"><code>library(xlsx)
-raw_file &lt;- system.file(&quot;extdata&quot;, &quot;SK_data.xls&quot;, package = &quot;zFactor.DL&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gZGF0YS5mcmFtZShcbiAgaWQgPSAxOjEwLFxuICB0aW1lID0gYXMuRGF0ZSgnMjAwOS0wMS0wMScpICsgMDo5LFxuICBRMy4yLjEuID0gcm5vcm0oMTAsIDAsIDEpLFxuICBRMy4yLjIuID0gcm5vcm0oMTAsIDAsIDEpLFxuICBRMy4yLjMuID0gcm5vcm0oMTAsIDAsIDEpLFxuICBRMy4zLjEuID0gcm5vcm0oMTAsIDAsIDEpLFxuICBRMy4zLjIuID0gcm5vcm0oMTAsIDAsIDEpLFxuICBRMy4zLjMuID0gcm5vcm0oMTAsIDAsIDEpIClcblxuZGZcbmBgYCJ9 -->
+<pre class="r"><code>df &lt;- data.frame(
+  id = 1:10,
+  time = as.Date('2009-01-01') + 0:9,
+  Q3.2.1. = rnorm(10, 0, 1),
+  Q3.2.2. = rnorm(10, 0, 1),
+  Q3.2.3. = rnorm(10, 0, 1),
+  Q3.3.1. = rnorm(10, 0, 1),
+  Q3.3.2. = rnorm(10, 0, 1),
+  Q3.3.3. = rnorm(10, 0, 1) )
 
-# read the low pressure values of Ppr
-  raw_data &lt;- read.xlsx(raw_file, sheetIndex = 1)
-  </code></pre>
+df</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsX3ZhcnMgPC0gbmFtZXMocmF3X2RhdGEpXG5hbGxfdmFyc1xuYGBgIn0= -->
-<pre class="r"><code>all_vars &lt;- names(raw_data)
-all_vars</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMoZGYpIDwtIGdzdWIoXCJcXFxcLiguezJ9KSRcIiwgXCJfXFxcXDFcIiwgY29sbmFtZXMoZGYpKVxuY29sbmFtZXMoZGYpWzJdIDwtIFwiRGF0ZVwiXG5yZXMgPC0gcmVzaGFwZShkZiwgaWR2YXI9YyhcImlkXCIsIFwiRGF0ZVwiKSwgdmFyeWluZz0zOjgsIGRpcmVjdGlvbj1cImxvbmdcIiwgc2VwPVwiX1wiKVxucm93Lm5hbWVzKHJlcykgPC0gMTpucm93KHJlcylcbnJlc1xuYGBgIn0= -->
+<pre class="r"><code>colnames(df) &lt;- gsub(&quot;\\.(.{2})$&quot;, &quot;_\\1&quot;, colnames(df))
+colnames(df)[2] &lt;- &quot;Date&quot;
+res &lt;- reshape(df, idvar=c(&quot;id&quot;, &quot;Date&quot;), varying=3:8, direction=&quot;long&quot;, sep=&quot;_&quot;)
+row.names(res) &lt;- 1:nrow(res)
+res</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlBwclwiICAgIFwiVHByXCIgICAgXCJ6XCIgICAgICBcIlBwci4xXCIgIFwiVHByLjFcIiAgXCJ6LjFcIiAgICBcIlBwci4yXCIgXG4gWzhdIFwiVHByLjJcIiAgXCJ6LjJcIiAgICBcIlBwci4zXCIgIFwiVHByLjNcIiAgXCJ6LjNcIiAgICBcIlBwci40XCIgIFwiVHByLjRcIiBcblsxNV0gXCJ6LjRcIiAgICBcIlBwci41XCIgIFwiVHByLjVcIiAgXCJ6LjVcIiAgICBcIlBwci42XCIgIFwiVHByLjZcIiAgXCJ6LjZcIiAgIFxuWzIyXSBcIlBwci43XCIgIFwiVHByLjdcIiAgXCJ6LjdcIiAgICBcIlBwci44XCIgIFwiVHByLjhcIiAgXCJ6LjhcIiAgICBcIlBwci45XCIgXG5bMjldIFwiVHByLjlcIiAgXCJ6LjlcIiAgICBcIlBwci4xMFwiIFwiVHByLjEwXCIgXCJ6LjEwXCIgICBcIlBwci4xMVwiIFwiVHByLjExXCJcblszNl0gXCJ6LjExXCIgICBcIlBwci4xMlwiIFwiVHByLjEyXCIgXCJ6LjEyXCIgICBcIlBwci4xM1wiIFwiVHByLjEzXCIgXCJ6LjEzXCIgIFxuWzQzXSBcIlBwci4xNFwiIFwiVHByLjE0XCIgXCJ6LjE0XCIgICBcIlBwci4xNVwiIFwiVHByLjE1XCIgXCJ6LjE1XCIgICBcIlBwci4xNlwiXG5bNTBdIFwiVHByLjE2XCIgXCJ6LjE2XCIgICBcIlBwci4xN1wiIFwiVHByLjE3XCIgXCJ6LjE3XCIgICBcIlBwci4xOFwiIFwiVHByLjE4XCJcbls1N10gXCJ6LjE4XCIgICBcIlBwci4xOVwiIFwiVHByLjE5XCIgXCJ6LjE5XCIgIFxuIn0= -->
-<pre><code> [1] &quot;Ppr&quot;    &quot;Tpr&quot;    &quot;z&quot;      &quot;Ppr.1&quot;  &quot;Tpr.1&quot;  &quot;z.1&quot;    &quot;Ppr.2&quot; 
- [8] &quot;Tpr.2&quot;  &quot;z.2&quot;    &quot;Ppr.3&quot;  &quot;Tpr.3&quot;  &quot;z.3&quot;    &quot;Ppr.4&quot;  &quot;Tpr.4&quot; 
-[15] &quot;z.4&quot;    &quot;Ppr.5&quot;  &quot;Tpr.5&quot;  &quot;z.5&quot;    &quot;Ppr.6&quot;  &quot;Tpr.6&quot;  &quot;z.6&quot;   
-[22] &quot;Ppr.7&quot;  &quot;Tpr.7&quot;  &quot;z.7&quot;    &quot;Ppr.8&quot;  &quot;Tpr.8&quot;  &quot;z.8&quot;    &quot;Ppr.9&quot; 
-[29] &quot;Tpr.9&quot;  &quot;z.9&quot;    &quot;Ppr.10&quot; &quot;Tpr.10&quot; &quot;z.10&quot;   &quot;Ppr.11&quot; &quot;Tpr.11&quot;
-[36] &quot;z.11&quot;   &quot;Ppr.12&quot; &quot;Tpr.12&quot; &quot;z.12&quot;   &quot;Ppr.13&quot; &quot;Tpr.13&quot; &quot;z.13&quot;  
-[43] &quot;Ppr.14&quot; &quot;Tpr.14&quot; &quot;z.14&quot;   &quot;Ppr.15&quot; &quot;Tpr.15&quot; &quot;z.15&quot;   &quot;Ppr.16&quot;
-[50] &quot;Tpr.16&quot; &quot;z.16&quot;   &quot;Ppr.17&quot; &quot;Tpr.17&quot; &quot;z.17&quot;   &quot;Ppr.18&quot; &quot;Tpr.18&quot;
-[57] &quot;z.18&quot;   &quot;Ppr.19&quot; &quot;Tpr.19&quot; &quot;z.19&quot;  </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkocmVzaGFwZSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkoZHBseXIpXG4jIGNvbG5hbWVzKGRmKSA8LSBnc3ViKFwiXFxcXC4oLnsyfSkkXCIsIFwiX1xcXFwxXCIsIGNvbG5hbWVzKGRmKSlcbiMgbmFtZXMoZGYpXG5cbiAgZGYgJT4lXG4gICAgIGdhdGhlcihsb29wX251bWJlciwgXCJRM1wiLCBzdGFydHNfd2l0aChcIlEzXCIpKSAlPiUgXG4gICAgIHNlcGFyYXRlKGxvb3BfbnVtYmVyLGMoXCJMMVwiLCBcIkwyXCIpLCBzZXA9XCJfXCIpICU+JSBcbiAgICAgc3ByZWFkKEwxLCBRMykgJT4lXG4gICAgIHNlbGVjdCgtTDIpICU+JVxuICAgICBoZWFkKClcbmBgYCJ9 -->
 <pre class="r"><code>library(tidyr)
-library(reshape)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUHByIDwtIHJhd19kYXRhICU+JVxuICAgIHNlbGVjdChzdGFydHNfd2l0aChcIlBwclwiKSkgJT4lXG4gICAgcmVuYW1lKFBwci4wID0gUHByKSAlPiVcbiAgICBnYXRoZXIoa2V5LCB2YWx1ZSkgJT4lICAgICAgICAjIGdhdGhlciBhbGwgY29sdW1uc1xuICAgIGV4dHJhY3Qoa2V5LCBjKFwidmFyXCIsIFwic2V0XCIpLCBcIihQcHIpXFxcXC4oLispXCIgKSAgJT4lICAjIHNwbGl0IGF0IHRoZSBkb3RcbiAgICByZW5hbWUoUHByID0gdmFsdWUpICAlPiVcbiAgICBzZWxlY3QoUHByLCBzZXQpXG5UcHIgPC0gcmF3X2RhdGEgJT4lXG4gICAgc2VsZWN0KHN0YXJ0c193aXRoKFwiVHByXCIpKSAlPiVcbiAgICByZW5hbWUoVHByLjAgPSBUcHIpICU+JVxuICAgIGdhdGhlcihrZXksIHZhbHVlKSAlPiUgICAgICAgICMgZ2F0aGVyIGFsbCBjb2x1bW5zXG4gICAgZXh0cmFjdChrZXksIGMoXCJ2YXJcIiwgXCJzZXRcIiksIFwiKFRwcilcXFxcLiguKylcIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3RcbiAgICByZW5hbWUoVHByID0gdmFsdWUpICAlPiVcbiAgICBzZWxlY3QoVHByLCBzZXQpXG56IDwtIHJhd19kYXRhICU+JVxuICAgIHNlbGVjdChzdGFydHNfd2l0aChcInpcIikpICU+JVxuICAgIHJlbmFtZSh6LjAgPSB6KSAlPiVcbiAgICBnYXRoZXIoa2V5LCB2YWx1ZSkgJT4lICAgICAgICAjIGdhdGhlciBhbGwgY29sdW1uc1xuICAgIGV4dHJhY3Qoa2V5LCBjKFwidmFyXCIsIFwic2V0XCIpLCBcIih6KVxcXFwuKC4rKVwiICkgJT4lICMgc3BsaXQgYXQgdGhlIGRvdFxuICAgIHJlbmFtZSh6ID0gdmFsdWUpICAlPiVcbiAgICBzZWxlY3Qoeiwgc2V0KVxuYGBgIn0= -->
-<pre class="r"><code>Ppr &lt;- raw_data %&gt;%
-    select(starts_with(&quot;Ppr&quot;)) %&gt;%
-    rename(Ppr.0 = Ppr) %&gt;%
-    gather(key, value) %&gt;%        # gather all columns
-    extract(key, c(&quot;var&quot;, &quot;set&quot;), &quot;(Ppr)\\.(.+)&quot; )  %&gt;%  # split at the dot
-    rename(Ppr = value)  %&gt;%
-    select(Ppr, set)
-Tpr &lt;- raw_data %&gt;%
-    select(starts_with(&quot;Tpr&quot;)) %&gt;%
-    rename(Tpr.0 = Tpr) %&gt;%
-    gather(key, value) %&gt;%        # gather all columns
-    extract(key, c(&quot;var&quot;, &quot;set&quot;), &quot;(Tpr)\\.(.+)&quot; ) %&gt;% # split at the dot
-    rename(Tpr = value)  %&gt;%
-    select(Tpr, set)
-z &lt;- raw_data %&gt;%
-    select(starts_with(&quot;z&quot;)) %&gt;%
-    rename(z.0 = z) %&gt;%
-    gather(key, value) %&gt;%        # gather all columns
-    extract(key, c(&quot;var&quot;, &quot;set&quot;), &quot;(z)\\.(.+)&quot; ) %&gt;% # split at the dot
-    rename(z = value)  %&gt;%
-    select(z, set)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFBwciRzZXQgPT0gVHByJHNldClcbmBgYCJ9 -->
-<pre class="r"><code>all(Ppr$set == Tpr$set)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
-<pre><code>[1] TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFRwciRzZXQgPT0geiRzZXQpXG5gYGAifQ== -->
-<pre class="r"><code>all(Tpr$set == z$set)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
-<pre><code>[1] TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFBwciRzZXQgPT0geiRzZXQpXG5gYGAifQ== -->
-<pre class="r"><code>all(Ppr$set == z$set)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
-<pre><code>[1] TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFycm93X2RhdGEgPC0gY2JpbmQoVHByID0gVHByJFRwciwgUHByID0gUHByJFBwciwgIHopXG4jIG5hcnJvd19kYXRhICU+JVxuIyAgICAgc2VsZWN0KFBwciwgVHByLCB6KVxuYGBgIn0= -->
-<pre class="r"><code>narrow_data &lt;- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
-# narrow_data %&gt;%
-#     select(Ppr, Tpr, z)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
+library(dplyr)
+# colnames(df) &lt;- gsub(&quot;\\.(.{2})$&quot;, &quot;_\\1&quot;, colnames(df))
+# names(df)
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoeGxzeCkNCnJhd19maWxlIDwtIHN5c3RlbS5maWxlKCJleHRkYXRhIiwgIlNLX2RhdGEueGxzIiwgcGFja2FnZSA9ICJ6RmFjdG9yLkRMIikNCg0KIyByZWFkIHRoZSBsb3cgcHJlc3N1cmUgdmFsdWVzIG9mIFBwcg0KICByYXdfZGF0YSA8LSByZWFkLnhsc3gocmF3X2ZpbGUsIHNoZWV0SW5kZXggPSAxKQ0KICANCmBgYA0KDQoNCmBgYHtyfQ0KYWxsX3ZhcnMgPC0gbmFtZXMocmF3X2RhdGEpDQphbGxfdmFycw0KYGBgDQoNCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHlyKQ0KbGlicmFyeShyZXNoYXBlKQ0KYGBgDQoNCg0KDQoNCmBgYHtyfQ0KUHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiUHByIikpICU+JQ0KICAgIHJlbmFtZShQcHIuMCA9IFBwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFBwcilcXC4oLispIiApICAlPiUgICMgc3BsaXQgYXQgdGhlIGRvdA0KICAgIHJlbmFtZShQcHIgPSB2YWx1ZSkgICU+JQ0KICAgIHNlbGVjdChQcHIsIHNldCkNCg0KVHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiVHByIikpICU+JQ0KICAgIHJlbmFtZShUcHIuMCA9IFRwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFRwcilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoVHByID0gdmFsdWUpICAlPiUNCiAgICBzZWxlY3QoVHByLCBzZXQpDQoNCnogPC0gcmF3X2RhdGEgJT4lDQogICAgc2VsZWN0KHN0YXJ0c193aXRoKCJ6IikpICU+JQ0KICAgIHJlbmFtZSh6LjAgPSB6KSAlPiUNCiAgICBnYXRoZXIoa2V5LCB2YWx1ZSkgJT4lICAgICAgICAjIGdhdGhlciBhbGwgY29sdW1ucw0KICAgIGV4dHJhY3Qoa2V5LCBjKCJ2YXIiLCAic2V0IiksICIoeilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoeiA9IHZhbHVlKSAgJT4lDQogICAgc2VsZWN0KHosIHNldCkNCmBgYA0KDQpgYGB7cn0NCiMgdGVzdCB0aGF0IGFsbCBzZXRzIGFyZSB0aGUgc2FtZQ0KICBhbGwoUHByJHNldCA9PSBUcHIkc2V0KQ0KICBhbGwoVHByJHNldCA9PSB6JHNldCkNCiAgYWxsKFBwciRzZXQgPT0geiRzZXQpDQpgYGANCg0KYGBge3J9DQojIGEgbmFycm93IHRhYmxlIHdpdGggdGlkeSBkYXRhDQogIG5hcnJvd19kYXRhIDwtIGNiaW5kKFRwciA9IFRwciRUcHIsIFBwciA9IFBwciRQcHIsICB6KQ0KYGBgDQoNCg0KDQoNCg==</div>
+  df %&gt;%
+     gather(loop_number, &quot;Q3&quot;, starts_with(&quot;Q3&quot;)) %&gt;% 
+     separate(loop_number,c(&quot;L1&quot;, &quot;L2&quot;), sep=&quot;_&quot;) %&gt;% 
+     spread(L1, Q3) %&gt;%
+     select(-L2) %&gt;%
+     head()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBjb252ZXJ0IG11bHRpcGxlIGNvbHVtbnMgdG8gdGlkeSBkYXRhc2V0DQoNCmBgYHtyfQ0KZGYgPC0gZGF0YS5mcmFtZSgNCiAgaWQgPSAxOjEwLA0KICB0aW1lID0gYXMuRGF0ZSgnMjAwOS0wMS0wMScpICsgMDo5LA0KICBRMy4yLjEuID0gcm5vcm0oMTAsIDAsIDEpLA0KICBRMy4yLjIuID0gcm5vcm0oMTAsIDAsIDEpLA0KICBRMy4yLjMuID0gcm5vcm0oMTAsIDAsIDEpLA0KICBRMy4zLjEuID0gcm5vcm0oMTAsIDAsIDEpLA0KICBRMy4zLjIuID0gcm5vcm0oMTAsIDAsIDEpLA0KICBRMy4zLjMuID0gcm5vcm0oMTAsIDAsIDEpICkNCg0KZGYNCmBgYA0KDQpgYGB7cn0NCmNvbG5hbWVzKGRmKSA8LSBnc3ViKCJcXC4oLnsyfSkkIiwgIl9cXDEiLCBjb2xuYW1lcyhkZikpDQpjb2xuYW1lcyhkZilbMl0gPC0gIkRhdGUiDQpyZXMgPC0gcmVzaGFwZShkZiwgaWR2YXI9YygiaWQiLCAiRGF0ZSIpLCB2YXJ5aW5nPTM6OCwgZGlyZWN0aW9uPSJsb25nIiwgc2VwPSJfIikNCnJvdy5uYW1lcyhyZXMpIDwtIDE6bnJvdyhyZXMpDQpyZXMNCmBgYA0KDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5cikNCmxpYnJhcnkoZHBseXIpDQojIGNvbG5hbWVzKGRmKSA8LSBnc3ViKCJcXC4oLnsyfSkkIiwgIl9cXDEiLCBjb2xuYW1lcyhkZikpDQojIG5hbWVzKGRmKQ0KDQogIGRmICU+JQ0KICAgICBnYXRoZXIobG9vcF9udW1iZXIsICJRMyIsIHN0YXJ0c193aXRoKCJRMyIpKSAlPiUgDQogICAgIHNlcGFyYXRlKGxvb3BfbnVtYmVyLGMoIkwxIiwgIkwyIiksIHNlcD0iXyIpICU+JSANCiAgICAgc3ByZWFkKEwxLCBRMykgJT4lDQogICAgIHNlbGVjdCgtTDIpICU+JQ0KICAgICBoZWFkKCkNCmBgYA0K</div>
 
 
 

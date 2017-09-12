@@ -1,0 +1,43 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## convert multiple columns to tidy dataset
+
+```{r}
+df <- data.frame(
+  id = 1:10,
+  time = as.Date('2009-01-01') + 0:9,
+  Q3.2.1. = rnorm(10, 0, 1),
+  Q3.2.2. = rnorm(10, 0, 1),
+  Q3.2.3. = rnorm(10, 0, 1),
+  Q3.3.1. = rnorm(10, 0, 1),
+  Q3.3.2. = rnorm(10, 0, 1),
+  Q3.3.3. = rnorm(10, 0, 1) )
+
+df
+```
+
+```{r}
+colnames(df) <- gsub("\\.(.{2})$", "_\\1", colnames(df))
+colnames(df)[2] <- "Date"
+res <- reshape(df, idvar=c("id", "Date"), varying=3:8, direction="long", sep="_")
+row.names(res) <- 1:nrow(res)
+res
+```
+
+
+```{r}
+library(tidyr)
+library(dplyr)
+# colnames(df) <- gsub("\\.(.{2})$", "_\\1", colnames(df))
+# names(df)
+
+  df %>%
+     gather(loop_number, "Q3", starts_with("Q3")) %>% 
+     separate(loop_number,c("L1", "L2"), sep="_") %>% 
+     spread(L1, Q3) %>%
+     select(-L2) %>%
+     head()
+```
