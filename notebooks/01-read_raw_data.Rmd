@@ -1,0 +1,20 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(xlsx)
+
+raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
+# "C:/Users/msfz751/R/win-library/3.4/zFactor.DL/extdata/SK_data.xls"
+
+# read the low pressure values of Ppr
+  raw_data <- read.xlsx(raw_file, sheetIndex = 1)
+```
+
+```{r}
+dim(raw_data)
+# [1] 2853   60
+```
+

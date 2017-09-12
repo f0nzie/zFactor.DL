@@ -1,0 +1,108 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(xlsx)
+raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
+
+# read the low pressure values of Ppr
+  raw_data <- read.xlsx(raw_file, sheetIndex = 1)
+  
+```
+
+
+```{r}
+all_vars <- names(raw_data)
+all_vars
+```
+
+
+```{r}
+library(tidyr)
+library(reshape)
+
+# gathered <- gather(raw_data, key = c("Ppr", "Tpr"), value = "z")
+# molten <- melt(raw_data, id.vars = c("Ppr", "Tpr", "z"), measure.vars = c("Ppr", "Tpr"), variable.name = "z")
+# 
+# res <- reshape(df, idvar=c("id", "Date"), varying=1:60, direction="long", sep="_")
+# 
+Ppr <- raw_data %>%
+    gather(Ppr, Tpr, starts_with("Ppr"))
+# 168327
+
+Tpr <- raw_data %>%
+    gather(Ppr, Tpr, starts_with("Tpr"))
+
+z <- raw_data %>%
+    gather(z, starts_with("z"))
+```
+
+
+
+
+```{r}
+Ppr <- raw_data %>%
+    select(starts_with("Ppr")) %>%
+    rename(Ppr.0 = Ppr) %>%
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(Ppr)\\.(.+)" )  %>%  # split at the dot
+    rename(Ppr = value)  %>%
+    select(Ppr, set)
+
+Tpr <- raw_data %>%
+    select(starts_with("Tpr")) %>%
+    rename(Tpr.0 = Tpr) %>%
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(Tpr)\\.(.+)" ) %>% # split at the dot
+    rename(Tpr = value)  %>%
+    select(Tpr, set)
+
+z <- raw_data %>%
+    select(starts_with("z")) %>%
+    rename(z.0 = z) %>%
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(z)\\.(.+)" ) %>% # split at the dot
+    rename(z = value)  %>%
+    select(z, set)
+```
+
+
+
+```{r}
+df <- data.frame(
+  id = 1:10,
+  time = as.Date('2009-01-01') + 0:9,
+  Q3.2.1. = rnorm(10, 0, 1),
+  Q3.2.2. = rnorm(10, 0, 1),
+  Q3.2.3. = rnorm(10, 0, 1),
+  Q3.3.1. = rnorm(10, 0, 1),
+  Q3.3.2. = rnorm(10, 0, 1),
+  Q3.3.3. = rnorm(10, 0, 1) )
+
+df
+```
+
+```{r}
+colnames(df) <- gsub("\\.(.{2})$", "_\\1", colnames(df))
+colnames(df)[2] <- "Date"
+res <- reshape(df, idvar=c("id", "Date"), varying=3:8, direction="long", sep="_")
+row.names(res) <- 1:nrow(res)
+```
+
+
+```{r}
+library(tidyr)
+library(dplyr)
+# colnames(df) <- gsub("\\.(.{2})$", "_\\1", colnames(df))
+# names(df)
+
+  df %>%
+     gather(loop_number, "Q3", starts_with("Q3")) %>% 
+     separate(loop_number,c("L1", "L2"), sep="_") %>% 
+     spread(L1, Q3) %>%
+     select(-L2) %>%
+     head()
+```
+
