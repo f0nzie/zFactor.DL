@@ -1,6 +1,6 @@
 # Hello, world!
 #
-# This is an example function named 'hello' 
+# This is an example function named 'hello'
 # which prints 'Hello, world!'.
 #
 # You can learn more about package authoring with RStudio at:
@@ -16,3 +16,17 @@
 hello <- function() {
   print("Hello, world!")
 }
+
+#' Compressibilty factor
+#'
+#' A dataset containing the z factor from SK chart
+#'
+#' @format A data frame with 57060 rows and 4 variables:
+#' \describe{
+#'   \item{Tpr}{price, in US dollars}
+#'   \item{Ppr}{weight of the diamond, in carats}
+#'   \item{z}{weight of the diamond, in carats}
+#'   \item{set}{a set of Tpr curve}
+#'   ...
+#' }
+"narrow_dataset"

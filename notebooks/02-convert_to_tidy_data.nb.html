@@ -174,10 +174,15 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh4bHN4KVxucmF3X2ZpbGUgPC0gc3lzdGVtLmZpbGUoXCJleHRkYXRhXCIsIFwiU0tfZGF0YS54bHNcIiwgcGFja2FnZSA9IFwiekZhY3Rvci5ETFwiKVxuXG4jIHJlYWQgdGhlIGxvdyBwcmVzc3VyZSB2YWx1ZXMgb2YgUHByXG4gIHJhd19kYXRhIDwtIHJlYWQueGxzeChyYXdfZmlsZSwgc2hlZXRJbmRleCA9IDEpXG4gIFxuYGBgIn0= -->
-<pre class="r"><code>library(xlsx)
-raw_file &lt;- system.file(&quot;extdata&quot;, &quot;SK_data.xls&quot;, package = &quot;zFactor.DL&quot;)
-
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh4bHN4KVxuYGBgIn0= -->
+<pre class="r"><code>library(xlsx)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBySmF2YVxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bHN4amFyc1xuIn0= -->
+<pre><code>Loading required package: rJava
+Loading required package: xlsxjars</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmF3X2ZpbGUgPC0gc3lzdGVtLmZpbGUoXCJleHRkYXRhXCIsIFwiU0tfZGF0YS54bHNcIiwgcGFja2FnZSA9IFwiekZhY3Rvci5ETFwiKVxuIyByZWFkIHRoZSBsb3cgcHJlc3N1cmUgdmFsdWVzIG9mIFBwclxuICByYXdfZGF0YSA8LSByZWFkLnhsc3gocmF3X2ZpbGUsIHNoZWV0SW5kZXggPSAxKVxuICBcbmBgYCJ9 -->
+<pre class="r"><code>raw_file &lt;- system.file(&quot;extdata&quot;, &quot;SK_data.xls&quot;, package = &quot;zFactor.DL&quot;)
 # read the low pressure values of Ppr
   raw_data &lt;- read.xlsx(raw_file, sheetIndex = 1)
   </code></pre>
@@ -205,9 +210,10 @@ all_vars</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkocmVzaGFwZSlcbmBgYCJ9 -->
-<pre class="r"><code>library(tidyr)
-library(reshape)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZXNoYXBlKVxubGlicmFyeShkcGx5cilcbmxpYnJhcnkodGlkeXIpXG5gYGAifQ== -->
+<pre class="r"><code>library(reshape)
+library(dplyr)
+library(tidyr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -240,20 +246,21 @@ z &lt;- raw_data %&gt;%
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFBwciRzZXQgPT0gVHByJHNldClcbmBgYCJ9 -->
-<pre class="r"><code>all(Ppr$set == Tpr$set)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0ZXN0IHRoYXQgYWxsIHNldHMgYXJlIHRoZSBzYW1lXG4gIGFsbChQcHIkc2V0ID09IFRwciRzZXQpXG5gYGAifQ== -->
+<pre class="r"><code># test that all sets are the same
+  all(Ppr$set == Tpr$set)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
 <pre><code>[1] TRUE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFRwciRzZXQgPT0geiRzZXQpXG5gYGAifQ== -->
-<pre class="r"><code>all(Tpr$set == z$set)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBhbGwoVHByJHNldCA9PSB6JHNldClcbmBgYCJ9 -->
+<pre class="r"><code>  all(Tpr$set == z$set)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
 <pre><code>[1] TRUE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKFBwciRzZXQgPT0geiRzZXQpXG5gYGAifQ== -->
-<pre class="r"><code>all(Ppr$set == z$set)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBhbGwoUHByJHNldCA9PSB6JHNldClcbmBgYCJ9 -->
+<pre class="r"><code>  all(Ppr$set == z$set)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
 <pre><code>[1] TRUE</code></pre>
@@ -262,16 +269,22 @@ z &lt;- raw_data %&gt;%
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFycm93X2RhdGEgPC0gY2JpbmQoVHByID0gVHByJFRwciwgUHByID0gUHByJFBwciwgIHopXG4jIG5hcnJvd19kYXRhICU+JVxuIyAgICAgc2VsZWN0KFBwciwgVHByLCB6KVxuYGBgIn0= -->
-<pre class="r"><code>narrow_data &lt;- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
-# narrow_data %&gt;%
-#     select(Ppr, Tpr, z)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhIG5hcnJvdyB0YWJsZSB3aXRoIHRpZHkgZGF0YVxuICBuYXJyb3dfZGF0YXNldCA8LSBjYmluZChUcHIgPSBUcHIkVHByLCBQcHIgPSBQcHIkUHByLCAgeilcbmBgYCJ9 -->
+<pre class="r"><code># a narrow table with tidy data
+  narrow_dataset &lt;- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2F2ZShuYXJyb3dfZGF0YXNldCwgZmlsZSA9IFwiLi4vZGF0YS9uYXJyb3cucmRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>save(narrow_dataset, file = &quot;../data/narrow.rda&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoeGxzeCkNCnJhd19maWxlIDwtIHN5c3RlbS5maWxlKCJleHRkYXRhIiwgIlNLX2RhdGEueGxzIiwgcGFja2FnZSA9ICJ6RmFjdG9yLkRMIikNCg0KIyByZWFkIHRoZSBsb3cgcHJlc3N1cmUgdmFsdWVzIG9mIFBwcg0KICByYXdfZGF0YSA8LSByZWFkLnhsc3gocmF3X2ZpbGUsIHNoZWV0SW5kZXggPSAxKQ0KICANCmBgYA0KDQoNCmBgYHtyfQ0KYWxsX3ZhcnMgPC0gbmFtZXMocmF3X2RhdGEpDQphbGxfdmFycw0KYGBgDQoNCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHlyKQ0KbGlicmFyeShyZXNoYXBlKQ0KYGBgDQoNCg0KDQoNCmBgYHtyfQ0KUHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiUHByIikpICU+JQ0KICAgIHJlbmFtZShQcHIuMCA9IFBwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFBwcilcXC4oLispIiApICAlPiUgICMgc3BsaXQgYXQgdGhlIGRvdA0KICAgIHJlbmFtZShQcHIgPSB2YWx1ZSkgICU+JQ0KICAgIHNlbGVjdChQcHIsIHNldCkNCg0KVHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiVHByIikpICU+JQ0KICAgIHJlbmFtZShUcHIuMCA9IFRwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFRwcilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoVHByID0gdmFsdWUpICAlPiUNCiAgICBzZWxlY3QoVHByLCBzZXQpDQoNCnogPC0gcmF3X2RhdGEgJT4lDQogICAgc2VsZWN0KHN0YXJ0c193aXRoKCJ6IikpICU+JQ0KICAgIHJlbmFtZSh6LjAgPSB6KSAlPiUNCiAgICBnYXRoZXIoa2V5LCB2YWx1ZSkgJT4lICAgICAgICAjIGdhdGhlciBhbGwgY29sdW1ucw0KICAgIGV4dHJhY3Qoa2V5LCBjKCJ2YXIiLCAic2V0IiksICIoeilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoeiA9IHZhbHVlKSAgJT4lDQogICAgc2VsZWN0KHosIHNldCkNCmBgYA0KDQpgYGB7cn0NCiMgdGVzdCB0aGF0IGFsbCBzZXRzIGFyZSB0aGUgc2FtZQ0KICBhbGwoUHByJHNldCA9PSBUcHIkc2V0KQ0KICBhbGwoVHByJHNldCA9PSB6JHNldCkNCiAgYWxsKFBwciRzZXQgPT0geiRzZXQpDQpgYGANCg0KYGBge3J9DQojIGEgbmFycm93IHRhYmxlIHdpdGggdGlkeSBkYXRhDQogIG5hcnJvd19kYXRhIDwtIGNiaW5kKFRwciA9IFRwciRUcHIsIFBwciA9IFBwciRQcHIsICB6KQ0KYGBgDQoNCg0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoeGxzeCkNCnJhd19maWxlIDwtIHN5c3RlbS5maWxlKCJleHRkYXRhIiwgIlNLX2RhdGEueGxzIiwgcGFja2FnZSA9ICJ6RmFjdG9yLkRMIikNCg0KIyByZWFkIHRoZSBsb3cgcHJlc3N1cmUgdmFsdWVzIG9mIFBwcg0KICByYXdfZGF0YSA8LSByZWFkLnhsc3gocmF3X2ZpbGUsIHNoZWV0SW5kZXggPSAxKQ0KICANCmBgYA0KDQoNCmBgYHtyfQ0KYWxsX3ZhcnMgPC0gbmFtZXMocmF3X2RhdGEpDQphbGxfdmFycw0KYGBgDQoNCg0KYGBge3J9DQpsaWJyYXJ5KHJlc2hhcGUpDQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeSh0aWR5cikNCg0KYGBgDQoNCg0KDQoNCmBgYHtyfQ0KUHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiUHByIikpICU+JQ0KICAgIHJlbmFtZShQcHIuMCA9IFBwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFBwcilcXC4oLispIiApICAlPiUgICMgc3BsaXQgYXQgdGhlIGRvdA0KICAgIHJlbmFtZShQcHIgPSB2YWx1ZSkgICU+JQ0KICAgIHNlbGVjdChQcHIsIHNldCkNCg0KVHByIDwtIHJhd19kYXRhICU+JQ0KICAgIHNlbGVjdChzdGFydHNfd2l0aCgiVHByIikpICU+JQ0KICAgIHJlbmFtZShUcHIuMCA9IFRwcikgJT4lDQogICAgZ2F0aGVyKGtleSwgdmFsdWUpICU+JSAgICAgICAgIyBnYXRoZXIgYWxsIGNvbHVtbnMNCiAgICBleHRyYWN0KGtleSwgYygidmFyIiwgInNldCIpLCAiKFRwcilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoVHByID0gdmFsdWUpICAlPiUNCiAgICBzZWxlY3QoVHByLCBzZXQpDQoNCnogPC0gcmF3X2RhdGEgJT4lDQogICAgc2VsZWN0KHN0YXJ0c193aXRoKCJ6IikpICU+JQ0KICAgIHJlbmFtZSh6LjAgPSB6KSAlPiUNCiAgICBnYXRoZXIoa2V5LCB2YWx1ZSkgJT4lICAgICAgICAjIGdhdGhlciBhbGwgY29sdW1ucw0KICAgIGV4dHJhY3Qoa2V5LCBjKCJ2YXIiLCAic2V0IiksICIoeilcXC4oLispIiApICU+JSAjIHNwbGl0IGF0IHRoZSBkb3QNCiAgICByZW5hbWUoeiA9IHZhbHVlKSAgJT4lDQogICAgc2VsZWN0KHosIHNldCkNCmBgYA0KDQpgYGB7cn0NCiMgdGVzdCB0aGF0IGFsbCBzZXRzIGFyZSB0aGUgc2FtZQ0KICBhbGwoUHByJHNldCA9PSBUcHIkc2V0KQ0KICBhbGwoVHByJHNldCA9PSB6JHNldCkNCiAgYWxsKFBwciRzZXQgPT0geiRzZXQpDQpgYGANCg0KYGBge3J9DQojIGEgbmFycm93IHRhYmxlIHdpdGggdGlkeSBkYXRhDQogIG5hcnJvd19kYXRhc2V0IDwtIGNiaW5kKFRwciA9IFRwciRUcHIsIFBwciA9IFBwciRQcHIsICB6KQ0KYGBgDQoNCmBgYHtyfQ0Kc2F2ZShuYXJyb3dfZGF0YXNldCwgZmlsZSA9ICIuLi9kYXRhL25hcnJvdy5yZGEiKQ0KYGBgDQoNCg0KDQo=</div>
 
 
 

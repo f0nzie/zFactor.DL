@@ -20,8 +20,10 @@ all_vars
 
 
 ```{r}
-library(tidyr)
 library(reshape)
+library(dplyr)
+library(tidyr)
+
 ```
 
 
@@ -62,9 +64,12 @@ z <- raw_data %>%
 
 ```{r}
 # a narrow table with tidy data
-  narrow_data <- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
+  narrow_dataset <- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
 ```
 
+```{r}
+save(narrow_dataset, file = "../data/narrow.rda")
+```
 
 
 
