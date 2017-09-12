@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+raw_chunk <- "
+0.677651	1.05	0.758361
+0.678217	1.05	0.758079
+0.685469	1.05	0.754464
+0.685493	1.05	0.754452
+0.685895	1.05	0.754251
+0.686456	1.05	0.753972
+0.686649	1.05	0.753875
+0.695518	1.05	0.749454
+0.702943	1.05	0.746121
+0.703360    1.05    0.745934
+0.711643    1.05    0.742216
+"
+raw_points <- read.table(text = raw_chunk, header = FALSE, sep = "")
+```
+
+
+```{r}
+# rows function
+rows = function(x) lapply(seq_len(nrow(x)), function(i) lapply(x,"[",i))
+```
+
+
+```{r}
+for (arow in rows(raw_points)) {
+    cat(arow$V1)
+}
+```
+
+
+```{r}
+f <- function(x) {
+  x[3]
+}
+
+df <- raw_points
+apply(df, 1, f)
+```
+
+```{r}
+for (i in 1:nrow(df)) cat(df$V3[i])
+```
+
+```{r}
+for (i in 1:nrow(df)) cat(df[i, 3])
+```
+
+```{r}
+library("ggplot2")
+library( "microbenchmark" )
+tm <- microbenchmark(S1 =
+                       apply(raw_points, 1, f),
+                     S2 = 
+                       for (arow in rows(raw_points)) {
+                           cat(arow$V1)
+                    }, 
+                    S3 = 
+                        for (i in 1:nrow(df)) cat(df$V3[i]),
+                    S4 =
+                        for (i in 1:nrow(df)) cat(df[i, 3]), 
+                    times = 100L) 
+autoplot(tm)
+```
+
+apply does the loop 100 times faster that lapply. All for loops are as slow as the lapply function.
+
