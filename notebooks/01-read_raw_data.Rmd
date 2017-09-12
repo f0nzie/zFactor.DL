@@ -18,3 +18,24 @@ dim(raw_data)
 # [1] 2853   60
 ```
 
+```{r}
+names(raw_data)
+colnames(raw_data)
+```
+
+```{r}
+# change the name of the first three columns to index ".0"
+colnames(raw_data)[1] <- "Ppr.0"
+colnames(raw_data)[2] <- "Tpr.0"
+colnames(raw_data)[3] <- "z.0"
+
+colnames(raw_data)
+
+untidy <- raw_data
+```
+
+```{r}
+# save untidy dataset
+devtools::use_data(untidy) 
+```
+

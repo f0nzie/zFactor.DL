@@ -30,3 +30,10 @@ hello <- function() {
 #'   ...
 #' }
 "narrow_dataset"
+
+#' untidy dataset
+#'
+#' The raw dataset read into R with first three column names changed
+#'
+#' @format A data frame with 2853 rows and 60 variables:
+"untidy"

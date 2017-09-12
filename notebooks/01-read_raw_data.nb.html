@@ -192,8 +192,72 @@ raw_data &lt;- read.xlsx(raw_file, sheetIndex = 1)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMocmF3X2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>names(raw_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlBwclwiICAgIFwiVHByXCIgICAgXCJ6XCIgICAgICBcIlBwci4xXCIgIFwiVHByLjFcIiAgXCJ6LjFcIiAgICBcIlBwci4yXCIgIFwiVHByLjJcIiBcbiBbOV0gXCJ6LjJcIiAgICBcIlBwci4zXCIgIFwiVHByLjNcIiAgXCJ6LjNcIiAgICBcIlBwci40XCIgIFwiVHByLjRcIiAgXCJ6LjRcIiAgICBcIlBwci41XCIgXG5bMTddIFwiVHByLjVcIiAgXCJ6LjVcIiAgICBcIlBwci42XCIgIFwiVHByLjZcIiAgXCJ6LjZcIiAgICBcIlBwci43XCIgIFwiVHByLjdcIiAgXCJ6LjdcIiAgIFxuWzI1XSBcIlBwci44XCIgIFwiVHByLjhcIiAgXCJ6LjhcIiAgICBcIlBwci45XCIgIFwiVHByLjlcIiAgXCJ6LjlcIiAgICBcIlBwci4xMFwiIFwiVHByLjEwXCJcblszM10gXCJ6LjEwXCIgICBcIlBwci4xMVwiIFwiVHByLjExXCIgXCJ6LjExXCIgICBcIlBwci4xMlwiIFwiVHByLjEyXCIgXCJ6LjEyXCIgICBcIlBwci4xM1wiXG5bNDFdIFwiVHByLjEzXCIgXCJ6LjEzXCIgICBcIlBwci4xNFwiIFwiVHByLjE0XCIgXCJ6LjE0XCIgICBcIlBwci4xNVwiIFwiVHByLjE1XCIgXCJ6LjE1XCIgIFxuWzQ5XSBcIlBwci4xNlwiIFwiVHByLjE2XCIgXCJ6LjE2XCIgICBcIlBwci4xN1wiIFwiVHByLjE3XCIgXCJ6LjE3XCIgICBcIlBwci4xOFwiIFwiVHByLjE4XCJcbls1N10gXCJ6LjE4XCIgICBcIlBwci4xOVwiIFwiVHByLjE5XCIgXCJ6LjE5XCIgIFxuIn0= -->
+<pre><code> [1] &quot;Ppr&quot;    &quot;Tpr&quot;    &quot;z&quot;      &quot;Ppr.1&quot;  &quot;Tpr.1&quot;  &quot;z.1&quot;    &quot;Ppr.2&quot;  &quot;Tpr.2&quot; 
+ [9] &quot;z.2&quot;    &quot;Ppr.3&quot;  &quot;Tpr.3&quot;  &quot;z.3&quot;    &quot;Ppr.4&quot;  &quot;Tpr.4&quot;  &quot;z.4&quot;    &quot;Ppr.5&quot; 
+[17] &quot;Tpr.5&quot;  &quot;z.5&quot;    &quot;Ppr.6&quot;  &quot;Tpr.6&quot;  &quot;z.6&quot;    &quot;Ppr.7&quot;  &quot;Tpr.7&quot;  &quot;z.7&quot;   
+[25] &quot;Ppr.8&quot;  &quot;Tpr.8&quot;  &quot;z.8&quot;    &quot;Ppr.9&quot;  &quot;Tpr.9&quot;  &quot;z.9&quot;    &quot;Ppr.10&quot; &quot;Tpr.10&quot;
+[33] &quot;z.10&quot;   &quot;Ppr.11&quot; &quot;Tpr.11&quot; &quot;z.11&quot;   &quot;Ppr.12&quot; &quot;Tpr.12&quot; &quot;z.12&quot;   &quot;Ppr.13&quot;
+[41] &quot;Tpr.13&quot; &quot;z.13&quot;   &quot;Ppr.14&quot; &quot;Tpr.14&quot; &quot;z.14&quot;   &quot;Ppr.15&quot; &quot;Tpr.15&quot; &quot;z.15&quot;  
+[49] &quot;Ppr.16&quot; &quot;Tpr.16&quot; &quot;z.16&quot;   &quot;Ppr.17&quot; &quot;Tpr.17&quot; &quot;z.17&quot;   &quot;Ppr.18&quot; &quot;Tpr.18&quot;
+[57] &quot;z.18&quot;   &quot;Ppr.19&quot; &quot;Tpr.19&quot; &quot;z.19&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMocmF3X2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>colnames(raw_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlBwclwiICAgIFwiVHByXCIgICAgXCJ6XCIgICAgICBcIlBwci4xXCIgIFwiVHByLjFcIiAgXCJ6LjFcIiAgICBcIlBwci4yXCIgIFwiVHByLjJcIiBcbiBbOV0gXCJ6LjJcIiAgICBcIlBwci4zXCIgIFwiVHByLjNcIiAgXCJ6LjNcIiAgICBcIlBwci40XCIgIFwiVHByLjRcIiAgXCJ6LjRcIiAgICBcIlBwci41XCIgXG5bMTddIFwiVHByLjVcIiAgXCJ6LjVcIiAgICBcIlBwci42XCIgIFwiVHByLjZcIiAgXCJ6LjZcIiAgICBcIlBwci43XCIgIFwiVHByLjdcIiAgXCJ6LjdcIiAgIFxuWzI1XSBcIlBwci44XCIgIFwiVHByLjhcIiAgXCJ6LjhcIiAgICBcIlBwci45XCIgIFwiVHByLjlcIiAgXCJ6LjlcIiAgICBcIlBwci4xMFwiIFwiVHByLjEwXCJcblszM10gXCJ6LjEwXCIgICBcIlBwci4xMVwiIFwiVHByLjExXCIgXCJ6LjExXCIgICBcIlBwci4xMlwiIFwiVHByLjEyXCIgXCJ6LjEyXCIgICBcIlBwci4xM1wiXG5bNDFdIFwiVHByLjEzXCIgXCJ6LjEzXCIgICBcIlBwci4xNFwiIFwiVHByLjE0XCIgXCJ6LjE0XCIgICBcIlBwci4xNVwiIFwiVHByLjE1XCIgXCJ6LjE1XCIgIFxuWzQ5XSBcIlBwci4xNlwiIFwiVHByLjE2XCIgXCJ6LjE2XCIgICBcIlBwci4xN1wiIFwiVHByLjE3XCIgXCJ6LjE3XCIgICBcIlBwci4xOFwiIFwiVHByLjE4XCJcbls1N10gXCJ6LjE4XCIgICBcIlBwci4xOVwiIFwiVHByLjE5XCIgXCJ6LjE5XCIgIFxuIn0= -->
+<pre><code> [1] &quot;Ppr&quot;    &quot;Tpr&quot;    &quot;z&quot;      &quot;Ppr.1&quot;  &quot;Tpr.1&quot;  &quot;z.1&quot;    &quot;Ppr.2&quot;  &quot;Tpr.2&quot; 
+ [9] &quot;z.2&quot;    &quot;Ppr.3&quot;  &quot;Tpr.3&quot;  &quot;z.3&quot;    &quot;Ppr.4&quot;  &quot;Tpr.4&quot;  &quot;z.4&quot;    &quot;Ppr.5&quot; 
+[17] &quot;Tpr.5&quot;  &quot;z.5&quot;    &quot;Ppr.6&quot;  &quot;Tpr.6&quot;  &quot;z.6&quot;    &quot;Ppr.7&quot;  &quot;Tpr.7&quot;  &quot;z.7&quot;   
+[25] &quot;Ppr.8&quot;  &quot;Tpr.8&quot;  &quot;z.8&quot;    &quot;Ppr.9&quot;  &quot;Tpr.9&quot;  &quot;z.9&quot;    &quot;Ppr.10&quot; &quot;Tpr.10&quot;
+[33] &quot;z.10&quot;   &quot;Ppr.11&quot; &quot;Tpr.11&quot; &quot;z.11&quot;   &quot;Ppr.12&quot; &quot;Tpr.12&quot; &quot;z.12&quot;   &quot;Ppr.13&quot;
+[41] &quot;Tpr.13&quot; &quot;z.13&quot;   &quot;Ppr.14&quot; &quot;Tpr.14&quot; &quot;z.14&quot;   &quot;Ppr.15&quot; &quot;Tpr.15&quot; &quot;z.15&quot;  
+[49] &quot;Ppr.16&quot; &quot;Tpr.16&quot; &quot;z.16&quot;   &quot;Ppr.17&quot; &quot;Tpr.17&quot; &quot;z.17&quot;   &quot;Ppr.18&quot; &quot;Tpr.18&quot;
+[57] &quot;z.18&quot;   &quot;Ppr.19&quot; &quot;Tpr.19&quot; &quot;z.19&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGFuZ2UgdGhlIG5hbWUgb2YgdGhlIGZpcnN0IHRocmVlIGNvbHVtbnMgdG8gaW5kZXggXCIuMFwiXG5jb2xuYW1lcyhyYXdfZGF0YSlbMV0gPC0gXCJQcHIuMFwiXG5jb2xuYW1lcyhyYXdfZGF0YSlbMl0gPC0gXCJUcHIuMFwiXG5jb2xuYW1lcyhyYXdfZGF0YSlbM10gPC0gXCJ6LjBcIlxuY29sbmFtZXMocmF3X2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code># change the name of the first three columns to index &quot;.0&quot;
+colnames(raw_data)[1] &lt;- &quot;Ppr.0&quot;
+colnames(raw_data)[2] &lt;- &quot;Tpr.0&quot;
+colnames(raw_data)[3] &lt;- &quot;z.0&quot;
+colnames(raw_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlBwci4wXCIgIFwiVHByLjBcIiAgXCJ6LjBcIiAgICBcIlBwci4xXCIgIFwiVHByLjFcIiAgXCJ6LjFcIiAgICBcIlBwci4yXCIgIFwiVHByLjJcIiBcbiBbOV0gXCJ6LjJcIiAgICBcIlBwci4zXCIgIFwiVHByLjNcIiAgXCJ6LjNcIiAgICBcIlBwci40XCIgIFwiVHByLjRcIiAgXCJ6LjRcIiAgICBcIlBwci41XCIgXG5bMTddIFwiVHByLjVcIiAgXCJ6LjVcIiAgICBcIlBwci42XCIgIFwiVHByLjZcIiAgXCJ6LjZcIiAgICBcIlBwci43XCIgIFwiVHByLjdcIiAgXCJ6LjdcIiAgIFxuWzI1XSBcIlBwci44XCIgIFwiVHByLjhcIiAgXCJ6LjhcIiAgICBcIlBwci45XCIgIFwiVHByLjlcIiAgXCJ6LjlcIiAgICBcIlBwci4xMFwiIFwiVHByLjEwXCJcblszM10gXCJ6LjEwXCIgICBcIlBwci4xMVwiIFwiVHByLjExXCIgXCJ6LjExXCIgICBcIlBwci4xMlwiIFwiVHByLjEyXCIgXCJ6LjEyXCIgICBcIlBwci4xM1wiXG5bNDFdIFwiVHByLjEzXCIgXCJ6LjEzXCIgICBcIlBwci4xNFwiIFwiVHByLjE0XCIgXCJ6LjE0XCIgICBcIlBwci4xNVwiIFwiVHByLjE1XCIgXCJ6LjE1XCIgIFxuWzQ5XSBcIlBwci4xNlwiIFwiVHByLjE2XCIgXCJ6LjE2XCIgICBcIlBwci4xN1wiIFwiVHByLjE3XCIgXCJ6LjE3XCIgICBcIlBwci4xOFwiIFwiVHByLjE4XCJcbls1N10gXCJ6LjE4XCIgICBcIlBwci4xOVwiIFwiVHByLjE5XCIgXCJ6LjE5XCIgIFxuIn0= -->
+<pre><code> [1] &quot;Ppr.0&quot;  &quot;Tpr.0&quot;  &quot;z.0&quot;    &quot;Ppr.1&quot;  &quot;Tpr.1&quot;  &quot;z.1&quot;    &quot;Ppr.2&quot;  &quot;Tpr.2&quot; 
+ [9] &quot;z.2&quot;    &quot;Ppr.3&quot;  &quot;Tpr.3&quot;  &quot;z.3&quot;    &quot;Ppr.4&quot;  &quot;Tpr.4&quot;  &quot;z.4&quot;    &quot;Ppr.5&quot; 
+[17] &quot;Tpr.5&quot;  &quot;z.5&quot;    &quot;Ppr.6&quot;  &quot;Tpr.6&quot;  &quot;z.6&quot;    &quot;Ppr.7&quot;  &quot;Tpr.7&quot;  &quot;z.7&quot;   
+[25] &quot;Ppr.8&quot;  &quot;Tpr.8&quot;  &quot;z.8&quot;    &quot;Ppr.9&quot;  &quot;Tpr.9&quot;  &quot;z.9&quot;    &quot;Ppr.10&quot; &quot;Tpr.10&quot;
+[33] &quot;z.10&quot;   &quot;Ppr.11&quot; &quot;Tpr.11&quot; &quot;z.11&quot;   &quot;Ppr.12&quot; &quot;Tpr.12&quot; &quot;z.12&quot;   &quot;Ppr.13&quot;
+[41] &quot;Tpr.13&quot; &quot;z.13&quot;   &quot;Ppr.14&quot; &quot;Tpr.14&quot; &quot;z.14&quot;   &quot;Ppr.15&quot; &quot;Tpr.15&quot; &quot;z.15&quot;  
+[49] &quot;Ppr.16&quot; &quot;Tpr.16&quot; &quot;z.16&quot;   &quot;Ppr.17&quot; &quot;Tpr.17&quot; &quot;z.17&quot;   &quot;Ppr.18&quot; &quot;Tpr.18&quot;
+[57] &quot;z.18&quot;   &quot;Ppr.19&quot; &quot;Tpr.19&quot; &quot;z.19&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW50aWR5IDwtIHJhd19kYXRhXG5gYGAifQ== -->
+<pre class="r"><code>untidy &lt;- raw_data</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGV2dG9vbHM6OnVzZV9kYXRhKHVudGlkeSkgXG5gYGAifQ== -->
+<pre class="r"><code>devtools::use_data(untidy) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiU2F2aW5nIHVudGlkeSBhcyB1bnRpZHkucmRhIHRvIEk6L2dpdGh1Yi5vaWxnYWlucy96RmFjdG9yLkRML2RhdGFcbiJ9 -->
+<pre><code>Saving untidy as untidy.rda to I:/github.oilgains/zFactor.DL/data</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoeGxzeCkNCg0KcmF3X2ZpbGUgPC0gc3lzdGVtLmZpbGUoImV4dGRhdGEiLCAiU0tfZGF0YS54bHMiLCBwYWNrYWdlID0gInpGYWN0b3IuREwiKQ0KIyAiQzovVXNlcnMvbXNmejc1MS9SL3dpbi1saWJyYXJ5LzMuNC96RmFjdG9yLkRML2V4dGRhdGEvU0tfZGF0YS54bHMiDQoNCiMgcmVhZCB0aGUgbG93IHByZXNzdXJlIHZhbHVlcyBvZiBQcHINCiAgcmF3X2RhdGEgPC0gcmVhZC54bHN4KHJhd19maWxlLCBzaGVldEluZGV4ID0gMSkNCmBgYA0KDQpgYGB7cn0NCmRpbShyYXdfZGF0YSkNCiMgWzFdIDI4NTMgICA2MA0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoeGxzeCkNCg0KcmF3X2ZpbGUgPC0gc3lzdGVtLmZpbGUoImV4dGRhdGEiLCAiU0tfZGF0YS54bHMiLCBwYWNrYWdlID0gInpGYWN0b3IuREwiKQ0KIyAiQzovVXNlcnMvbXNmejc1MS9SL3dpbi1saWJyYXJ5LzMuNC96RmFjdG9yLkRML2V4dGRhdGEvU0tfZGF0YS54bHMiDQoNCiMgcmVhZCB0aGUgbG93IHByZXNzdXJlIHZhbHVlcyBvZiBQcHINCiAgcmF3X2RhdGEgPC0gcmVhZC54bHN4KHJhd19maWxlLCBzaGVldEluZGV4ID0gMSkNCmBgYA0KDQpgYGB7cn0NCmRpbShyYXdfZGF0YSkNCiMgWzFdIDI4NTMgICA2MA0KYGBgDQoNCmBgYHtyfQ0KbmFtZXMocmF3X2RhdGEpDQpjb2xuYW1lcyhyYXdfZGF0YSkNCmBgYA0KDQpgYGB7cn0NCiMgY2hhbmdlIHRoZSBuYW1lIG9mIHRoZSBmaXJzdCB0aHJlZSBjb2x1bW5zIHRvIGluZGV4ICIuMCINCmNvbG5hbWVzKHJhd19kYXRhKVsxXSA8LSAiUHByLjAiDQpjb2xuYW1lcyhyYXdfZGF0YSlbMl0gPC0gIlRwci4wIg0KY29sbmFtZXMocmF3X2RhdGEpWzNdIDwtICJ6LjAiDQoNCmNvbG5hbWVzKHJhd19kYXRhKQ0KDQp1bnRpZHkgPC0gcmF3X2RhdGENCmBgYA0KDQpgYGB7cn0NCiMgc2F2ZSB1bnRpZHkgZGF0YXNldA0KZGV2dG9vbHM6OnVzZV9kYXRhKHVudGlkeSkgDQpgYGANCg0K</div>
 
 
 
