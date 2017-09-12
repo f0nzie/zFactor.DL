@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -14,14 +12,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r echo=FALSE}
+# load("./data/narrow_dataset.rda")
+library(zFactor.DL)
+```
+
 # zFactor.DL
 
-The goal of zFactor.DL is to ...
+The goal of zFactor.DL is to create a correlation using neural networks.
 
-## Example
+## Dataset
+The tidy dataset contains `r dim(narrow_dataset)[1]` observations of compressibility factor at different Pseudo-reduced Temperature and Pseudo-reduced pressures. These observations have been taken from a digital scan of the 1942 Standing-Katz chart for hydrocarbon gases.
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-## basic example code
+```{r}
+dim(narrow_dataset)
 ```
+
+
