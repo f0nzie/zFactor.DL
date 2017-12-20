@@ -1,0 +1,27 @@
+---
+title: "Row-bind Low and High Pressure tables"
+output: html_notebook
+---
+
+
+```{r}
+# load datasets
+data("sk_tidy_lp")
+data("sk_tidy_hp")
+
+# add column "range" to indicate if low or high pressure
+sk_tidy_lp["range"] <- "lp"
+sk_tidy_hp["range"] <- "hp"
+
+# bind the tables
+sk_tidy <- rbind(sk_tidy_lp, sk_tidy_hp)
+
+# convert column "set" to numeric
+sk_tidy$set <- as.numeric(sk_tidy$set)
+
+summary(sk_tidy)
+```
+```{r}
+# save tidy data to Rda file
+  save(sk_tidy, file = "../data/sk_tidy.rda", compress = "xz")
+```

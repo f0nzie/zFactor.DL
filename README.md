@@ -25,7 +25,7 @@ The original dataset, for Ppr from 0 to 15, is an Excel file named `SK_data.xls`
 
 ### Tidy Standing-Katz dataset
 
-The tidy dataset contains 57060 observations of compressibility factors at different Pseudo-reduced Temperatures and Pseudo-reduced pressures. The original data was converted to tidy format using `R`. Refer to notebook [01-read\_raw\_data.Rmd](https://github.com/f0nzie/zFactor.DL/blob/master/notebooks/01-read_raw_data.Rmd) for step by step process.
+The tidy dataset contains 57964 observations of compressibility factors at different Pseudo-reduced Temperatures and Pseudo-reduced pressures. The original data was converted to tidy format using `R`. Refer to notebook [01-read\_raw\_data.Rmd](https://github.com/f0nzie/zFactor.DL/blob/master/notebooks/01-read_raw_data.Rmd) for step by step process.
 
 The original file has been converted to a tidy format file named `tidy_SK.csv` with 57,060 observations and 4 variables with the column names Tpr, Ppr, z and set number. This file is under the same folder \[./inst/extdata\] (<https://github.com/f0nzie/zFactor.DL/tree/master/inst/extdata>).
 
@@ -45,12 +45,12 @@ data("sk_tidy")
 
 ``` r
 dim(sk_tidy)
-#> [1] 57060     4
+#> [1] 57964     5
 ```
 
 ``` r
 names(sk_tidy)
-#> [1] "Tpr" "Ppr" "z"   "set"
+#> [1] "Tpr"   "Ppr"   "z"     "set"   "range"
 ```
 
 ``` r
@@ -62,16 +62,35 @@ max(sk_tidy$Tpr)
 min(sk_tidy$Ppr)
 #> [1] 0
 max(sk_tidy$Ppr)
-#> [1] 15.0008
+#> [1] 30
 
 min(sk_tidy$z)
 #> [1] 0.251754
 max(sk_tidy$z)
-#> [1] 1.75359
+#> [1] 2.66
 ```
 
 ``` r
 summary(sk_tidy)
+#>       Tpr             Ppr               z               set        
+#>  Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Min.   : 0.000  
+#>  1st Qu.:1.300   1st Qu.: 2.558   1st Qu.:0.8477   1st Qu.: 4.000  
+#>  Median :1.600   Median : 5.680   Median :0.9921   Median : 9.000  
+#>  Mean   :1.743   Mean   : 7.008   Mean   :1.0335   Mean   : 9.406  
+#>  3rd Qu.:2.200   3rd Qu.:11.853   3rd Qu.:1.2621   3rd Qu.:14.000  
+#>  Max.   :3.000   Max.   :30.000   Max.   :2.6600   Max.   :19.000  
+#>     range          
+#>  Length:57964      
+#>  Class :character  
+#>  Mode  :character  
+#>                    
+#>                    
+#> 
+```
+
+``` r
+data("sk_tidy_lp")
+summary(sk_tidy_lp)
 #>       Tpr             Ppr               z              set           
 #>  Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Length:57060      
 #>  1st Qu.:1.288   1st Qu.: 2.525   1st Qu.:0.8439   Class :character  
@@ -79,4 +98,16 @@ summary(sk_tidy)
 #>  Mean   :1.738   Mean   : 6.754   Mean   :1.0214                     
 #>  3rd Qu.:2.050   3rd Qu.:11.647   3rd Qu.:1.2509                     
 #>  Max.   :3.000   Max.   :15.001   Max.   :1.7536
+```
+
+``` r
+data("sk_tidy_hp")
+summary(sk_tidy_hp)
+#>       Tpr            Ppr             z             set           
+#>  Min.   :1.40   Min.   :16.0   Min.   :1.363   Length:904        
+#>  1st Qu.:1.75   1st Qu.:19.5   1st Qu.:1.585   Class :character  
+#>  Median :2.10   Median :23.0   Median :1.749   Mode  :character  
+#>  Mean   :2.10   Mean   :23.0   Mean   :1.792                     
+#>  3rd Qu.:2.45   3rd Qu.:26.5   3rd Qu.:1.945                     
+#>  Max.   :2.80   Max.   :30.0   Max.   :2.660
 ```

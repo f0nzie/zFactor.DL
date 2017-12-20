@@ -82,3 +82,16 @@ max(sk_tidy$z)
 summary(sk_tidy)
 ```
 
+```{r}
+data("sk_tidy_lp")
+summary(sk_tidy_lp)
+```
+
+```{r}
+data("sk_tidy_hp")
+summary(sk_tidy_hp)
+```
+
+
+
+
