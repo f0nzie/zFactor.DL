@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compressibilty factor — SK_tidy â€¢ zFactor.DL</title>
+<title>Compressibilty factor dataset — sk_tidy â€¢ zFactor.DL</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,22 +83,24 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compressibilty factor</h1>
+    <h1>Compressibilty factor dataset</h1>
     </div>
 
     
-    <p>A dataset containing the z factor from SK chart</p>
+    <p>A dataset containing the z factor from SK chart for low and high
+Pseudo-reduced pressure</p>
     
 
-    <pre class="usage"><span class='no'>SK_tidy</span></pre>
+    <pre class="usage"><span class='no'>sk_tidy</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 57060 rows and 4 variables:</p><dl class='dl-horizontal'>
-  <dt>Tpr</dt><dd><p>price, in US dollars</p></dd>
-  <dt>Ppr</dt><dd><p>weight of the diamond, in carats</p></dd>
-  <dt>z</dt><dd><p>weight of the diamond, in carats</p></dd>
+  <dt>Tpr</dt><dd><p>pseudo reduce temperature</p></dd>
+  <dt>Ppr</dt><dd><p>pseudo reduced pressure</p></dd>
+  <dt>z</dt><dd><p>compressibility factor</p></dd>
   <dt>set</dt><dd><p>a set of Tpr curve</p></dd>
+  <dt>range</dt><dd><p>if curve is low or high pressure</p></dd>
   ...
 </dl>
     
