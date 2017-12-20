@@ -74,4 +74,13 @@ z <- raw_data %>%
 ```
 
 
+## Save the tidy data with different name
+
+```{r}
+# this will save SK_tidy as sk_tidy
+data("SK_tidy")
+
+sk_tidy <- SK_tidy
+save(sk_tidy, file = "../data/sk_tidy.rda", compress = "xz")
+```
 

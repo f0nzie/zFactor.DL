@@ -5,9 +5,9 @@ test_that("one point in A:C,2854 yields true", {
     # point read from raw data table
       ac2854 <- c(15.0008,	1.05,	1.75359)
     # logical conditions
-      mask <- SK_tidy$Ppr == ac2854[1] & SK_tidy$Tpr == ac2854[2]
+      mask <- sk_tidy$Ppr == ac2854[1] & sk_tidy$Tpr == ac2854[2]
     # assert the lookup value
-    expect_true(SK_tidy[which(mask), "z"] == ac2854[3])
+    expect_true(sk_tidy[which(mask), "z"] == ac2854[3])
 
 })
 
@@ -16,9 +16,9 @@ test_that("one point in A:C,2854 yields true", {
     # point read from raw data table
     bfbh2854 <- c(15.0008,	3.0,	1.33488)
     # logical conditions
-    mask <- SK_tidy$Ppr == bfbh2854[1] & SK_tidy$Tpr == bfbh2854[2]
+    mask <- sk_tidy$Ppr == bfbh2854[1] & sk_tidy$Tpr == bfbh2854[2]
     # assert the lookup value
-      expect_true(SK_tidy[which(mask), "z"] == bfbh2854[3])
+      expect_true(sk_tidy[which(mask), "z"] == bfbh2854[3])
 
 })
 
@@ -33,9 +33,9 @@ test_that("multiple z points in raw dataset match z in tidy dataset", {
     )
 
     for (arow in zList) {
-        mask <- SK_tidy$Ppr == arow[1] & SK_tidy$Tpr == arow[2]
+        mask <- sk_tidy$Ppr == arow[1] & sk_tidy$Tpr == arow[2]
         # cat(sprintf("%f %f \n", SK_tidy[which(mask), "z"], arow[3]))
-        expect_true(SK_tidy[which(mask), "z"] == arow[3])
+        expect_true(sk_tidy[which(mask), "z"] == arow[3])
     }
 })
 
@@ -43,9 +43,9 @@ test_that("multiple z points in raw dataset match z in tidy dataset", {
 f <- function(x) {
     # function to compare a row of the dataset z values
     # dataset vs raw data
-    mask <- SK_tidy$Ppr == x[1] & SK_tidy$Tpr == x[2]
+    mask <- sk_tidy$Ppr == x[1] & sk_tidy$Tpr == x[2]
     # cat(sprintf("%f %f \n", SK_tidy[which(mask), "z"], x[3]))
-    expect_true(SK_tidy[which(mask), "z"] == x[3])
+    expect_true(sk_tidy[which(mask), "z"] == x[3])
 }
 
 test_that("chunks of raw data points match tidy dataset", {

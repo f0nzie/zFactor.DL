@@ -15,7 +15,7 @@ hello <- function() {
 #'   \item{set}{a set of Tpr curve}
 #'   ...
 #' }
-"SK_tidy"
+"sk_tidy"
 
 #' untidy dataset
 #'

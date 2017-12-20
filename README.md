@@ -40,10 +40,10 @@ The tidy dataset format looks like this, 57,060 observations (rows) and 4 variab
     57060
 
 ``` r
-data("SK_tidy")
+data("sk_tidy")
 ```
 
 ``` r
-dim(SK_tidy)
+dim(sk_tidy)
 #> [1] 57060     4
 ```
