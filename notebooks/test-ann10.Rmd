@@ -136,7 +136,7 @@ z.Ann10 <- function(pres.pr, temp.pr, tolerance, verbose) {
         z_n <-  z_n + n2_10[j, 2] * wb3_10[j]
     z_n  <-  z_n + wb3_10[11]	# adding the bias value
 
-    zAnn10 <-  (z_n + 1) * (Z_max - Z_min) / 2 + Z_min; # reverse normalization of normalized z factor.
+    zAnn10 <-  (z_n + 1) * (Z_max - Z_min) / 2 + Z_min; # reverse normalization 
     return(zAnn10)
 
 }
@@ -156,34 +156,38 @@ z.Ann5 <- function(pres.pr, temp.pr, tolerance, verbose) {
 
 
 .z.Ann5.r <- function(pres.pr, temp.pr) {
-    # simpler function. solver one point at a time
+    # normalize Ppr and Tpr before entering them as inputs into the network
     Ppr <- pres.pr; Tpr <- temp.pr
     Ppr_n = 2.0 / (Ppr_max - Ppr_min) * (Ppr - Ppr_min) - 1.0
     Tpr_n = 2.0 / (Tpr_max - Tpr_min) * (Tpr - Tpr_min) - 1.0
 
+    # build matrix of w+b between input layer and 1st layer
     for (i in 1:5)  {
         n1_5[i, 1] <-  Ppr_n * wb1_5[i, 1] + Tpr_n * wb1_5[i, 2] + wb1_5[i, 3]
-        n1_5[i, 2] <-  logSig(n1_5[i, 1]);
+        n1_5[i, 2] <-  logSig(n1_5[i, 1])     # set activations
     }
+    
+    # build matrix of w+b between 1st layer and 2nd layer
     for (i in 1:5)  {
         n2_5[i, 1]  <-  0;
         for (j  in 1:nrow(n2_5)) {
-            # cat(i, j, n2_5[i,j], "\n")
             n2_5[i, 1]  <-  n2_5[i, 1] + n1_5[j, 2] * wb2_5[i, j]
         }
-        n2_5[i, 1] <-  n2_5[i, 1] + wb2_5[i, 5+1];	#  //adding the bias value
-        n2_5[i, 2] <- logSig(n2_5[i, 1])
+        n2_5[i, 1] <-  n2_5[i, 1] + wb2_5[i, 5+1];	# adding the bias value
+        n2_5[i, 2] <- logSig(n2_5[i, 1])            # set activations
     }
+    
+    # calculate the normalized z_n between the 2nd layer and the output layer
     z_n = 0;
     for (j in 1:nrow(n2_5))
         z_n <-  z_n + n2_5[j, 2] * wb3_5[j]
-    z_n  <-  z_n + wb3_5[5+1]	# adding the bias value
-
-    zAnn5 <-  (z_n + 1) * (Z_max - Z_min) / 2 + Z_min; # reverse normalization of normalized z factor.
+    z_n  <-  z_n + wb3_5[5+1]	                    # adding the bias value
+    
+    # denormalize z_n to read field (real) value
+    zAnn5 <-  (z_n + 1) * (Z_max - Z_min) / 2 + Z_min; # reverse normalization
     return(zAnn5)
 
 }
-
 
 
 logSig <- function(x) {
