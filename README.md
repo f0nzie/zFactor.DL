@@ -29,7 +29,7 @@ The tidy dataset contains 57060 observations of compressibility factors at diffe
 
 The original file has been converted to a tidy format file named `tidy_SK.csv` with 57,060 observations and 4 variables with the column names Tpr, Ppr, z and set number. This file is under the same folder \[./inst/extdata\] (<https://github.com/f0nzie/zFactor.DL/tree/master/inst/extdata>).
 
-The tidy dataset format looks like this:
+The tidy dataset format looks like this, 57,060 observations (rows) and 4 variables (columns):
 
     row     Tpr   Ppr   z   set
        1       
@@ -40,6 +40,10 @@ The tidy dataset format looks like this:
     57060
 
 ``` r
-dim(narrow_dataset)
+data("SK_tidy")
+```
+
+``` r
+dim(SK_tidy)
 #> [1] 57060     4
 ```
