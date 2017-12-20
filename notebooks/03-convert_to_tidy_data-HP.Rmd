@@ -1,0 +1,102 @@
+---
+title: "Convert raw to tidy data"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+```{r setup, include=F, error=T, message=F, warning=F}
+knitr::opts_chunk$set(echo=T, comment=NA, error=T, warning=F, message = F, fig.align = 'center', cache = FALSE, cache.comments = FALSE, results = "hold")
+```
+
+
+```{r cache=TRUE}
+library(xlsx)
+# read original data in Excel
+  raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
+
+# read the low pressure values of Ppr
+  raw_data <- read.xlsx(raw_file, sheetIndex = 1)
+  
+# colum names of raw dataset
+  all_vars <- names(raw_data)
+  all_vars
+```
+
+
+
+```{r}
+# convert multicolumnar format to tidy format
+# load libraries
+  library(dplyr)
+  library(tidyr)
+
+Ppr <- raw_data %>%
+    select(starts_with("Ppr")) %>%
+    rename(Ppr.0 = Ppr) %>%       # add index 0 to make all columns the same
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(Ppr)\\.(.+)" )  %>%  # split at the dot
+    rename(Ppr = value)  %>%      # rename value to Ppr
+    select(Ppr, set)              # get only these two columns
+
+Tpr <- raw_data %>%
+    select(starts_with("Tpr")) %>%
+    rename(Tpr.0 = Tpr) %>%
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(Tpr)\\.(.+)" ) %>% # split at the dot
+    rename(Tpr = value)  %>%
+    select(Tpr, set)
+
+z <- raw_data %>%
+    select(starts_with("z")) %>%
+    rename(z.0 = z) %>%
+    gather(key, value) %>%        # gather all columns
+    extract(key, c("var", "set"), "(z)\\.(.+)" ) %>% # split at the dot
+    rename(z = value)  %>%
+    select(z, set)
+```
+
+```{r}
+# test that all sets are the same
+  all(Ppr$set == Tpr$set)
+  all(Tpr$set == z$set)
+  all(Ppr$set == z$set)
+```
+
+```{r}
+# a narrow table with tidy data
+  SK_tidy <- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
+```
+
+```{r}
+# save tidy data to Rda file
+  save(SK_tidy, file = "../data/SK_tidy.rda", compress = "xz")
+```
+
+
+## Save the tidy data with different name
+
+```{r}
+# this will save SK_tidy as sk_tidy
+data("SK_tidy")
+
+sk_tidy <- SK_tidy
+save(sk_tidy, file = "../data/sk_tidy.rda", compress = "xz")
+```
+
+
+
+## high-pressure
+
+```{r cache=TRUE}
+library(xlsx)
+# read original data in Excel
+  raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
+
+# read the low pressure values of Ppr
+  raw_data <- read.xlsx(raw_file, sheetIndex = 2)
+  
+# colum names of raw dataset
+  all_vars <- names(raw_data)
+  all_vars
+```

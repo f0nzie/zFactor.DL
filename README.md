@@ -14,7 +14,7 @@ These observations have been taken from a digital scan of the 1942 Standing-Katz
 
 The original data was gracefully provided by the authors of the paper \[Kamyab, M., et al., Using artificial neural networks to estimate the z-factor for natural hydrocarbon gases, J. Pet. Sci.Eng. (2010), <doi:10.1016/j.petrol.2010.07.006>\] (<http://www.sciencedirect.com/science/article/pii/S0920410510001427?via%3Dihub>).
 
-The original dataset is an Excel file named `SK_data.xls` with Ppr, Tpr and z in columnar format with 2853 rows and 60 columns. It is under the folder \[./inst/extdata\] (<https://github.com/f0nzie/zFactor.DL/tree/master/inst/extdata>) in this repository. They are three columns or set per Tpr curve.
+The original dataset, for Ppr from 0 to 15, is an Excel file named `SK_data.xls` with Ppr, Tpr and z in columnar format with 2853 rows and 60 columns. It is under the folder \[./inst/extdata\] (<https://github.com/f0nzie/zFactor.DL/tree/master/inst/extdata>) in this repository. They are three columns or set per Tpr curve.
 
     row    Ppr.0 Tpr.0 z.0    Ppr.1 Tpr.1 z.1  ...    Ppr.19 Tpr.19 z.19
      1
@@ -46,4 +46,37 @@ data("sk_tidy")
 ``` r
 dim(sk_tidy)
 #> [1] 57060     4
+```
+
+``` r
+names(sk_tidy)
+#> [1] "Tpr" "Ppr" "z"   "set"
+```
+
+``` r
+min(sk_tidy$Tpr)
+#> [1] 1.05
+max(sk_tidy$Tpr)
+#> [1] 3
+
+min(sk_tidy$Ppr)
+#> [1] 0
+max(sk_tidy$Ppr)
+#> [1] 15.0008
+
+min(sk_tidy$z)
+#> [1] 0.251754
+max(sk_tidy$z)
+#> [1] 1.75359
+```
+
+``` r
+summary(sk_tidy)
+#>       Tpr             Ppr               z              set           
+#>  Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Length:57060      
+#>  1st Qu.:1.288   1st Qu.: 2.525   1st Qu.:0.8439   Class :character  
+#>  Median :1.550   Median : 5.577   Median :0.9882   Mode  :character  
+#>  Mean   :1.738   Mean   : 6.754   Mean   :1.0214                     
+#>  3rd Qu.:2.050   3rd Qu.:11.647   3rd Qu.:1.2509                     
+#>  Max.   :3.000   Max.   :15.001   Max.   :1.7536
 ```
