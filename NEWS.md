@@ -1,5 +1,8 @@
-# zFactor.DL 0.1.0
 
+
+# zFactor.DL 0.1.0
+* total of `57964` rows and and `5` columns, combination of low and high pressure values.
+* variable `set` converted to numeric in `sk_tidy.rda`.
 * replace `sk_tidy.rda` with a combined table of low and high pressure.
 * make `set` column in both tables numeric.
 * add column `range` to both tables indicating if `lo` or `hi`.

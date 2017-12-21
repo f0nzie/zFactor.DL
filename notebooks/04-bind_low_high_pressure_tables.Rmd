@@ -25,3 +25,16 @@ summary(sk_tidy)
 # save tidy data to Rda file
   save(sk_tidy, file = "../data/sk_tidy.rda", compress = "xz")
 ```
+
+
+        Tpr             Ppr               z               set        
+     Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Min.   : 0.000  
+     1st Qu.:1.300   1st Qu.: 2.558   1st Qu.:0.8477   1st Qu.: 4.000  
+     Median :1.600   Median : 5.680   Median :0.9921   Median : 9.000  
+     Mean   :1.743   Mean   : 7.008   Mean   :1.0335   Mean   : 9.406  
+     3rd Qu.:2.200   3rd Qu.:11.853   3rd Qu.:1.2621   3rd Qu.:14.000  
+     Max.   :3.000   Max.   :30.000   Max.   :2.6600   Max.   :19.000  
+        range          
+     Length:57964      
+     Class :character  
+     Mode  :character  

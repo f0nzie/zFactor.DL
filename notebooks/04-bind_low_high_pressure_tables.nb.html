@@ -188,8 +188,24 @@ sk_tidy &lt;- rbind(sk_tidy_lp, sk_tidy_hp)
 sk_tidy$set &lt;- as.numeric(sk_tidy$set)
 summary(sk_tidy)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgVHByICAgICAgICAgICAgIFBwciAgICAgICAgICAgICAgIHogICAgICAgICAgICAgICBzZXQgICAgICAgIFxuIE1pbi4gICA6MS4wNTAgICBNaW4uICAgOiAwLjAwMCAgIE1pbi4gICA6MC4yNTE4ICAgTWluLiAgIDogMC4wMDAgIFxuIDFzdCBRdS46MS4zMDAgICAxc3QgUXUuOiAyLjU1OCAgIDFzdCBRdS46MC44NDc3ICAgMXN0IFF1LjogNC4wMDAgIFxuIE1lZGlhbiA6MS42MDAgICBNZWRpYW4gOiA1LjY4MCAgIE1lZGlhbiA6MC45OTIxICAgTWVkaWFuIDogOS4wMDAgIFxuIE1lYW4gICA6MS43NDMgICBNZWFuICAgOiA3LjAwOCAgIE1lYW4gICA6MS4wMzM1ICAgTWVhbiAgIDogOS40MDYgIFxuIDNyZCBRdS46Mi4yMDAgICAzcmQgUXUuOjExLjg1MyAgIDNyZCBRdS46MS4yNjIxICAgM3JkIFF1LjoxNC4wMDAgIFxuIE1heC4gICA6My4wMDAgICBNYXguICAgOjMwLjAwMCAgIE1heC4gICA6Mi42NjAwICAgTWF4LiAgIDoxOS4wMDAgIFxuICAgIHJhbmdlICAgICAgICAgIFxuIExlbmd0aDo1Nzk2NCAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgIFxuIn0= -->
-<pre><code>      Tpr             Ppr               z               set        
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgVHByICAgICAgICAgICAgIFBwciAgICAgICAgICAgICAgIHogICAgICAgICAgICAgICBzZXQgICAgICAgICAgICByYW5nZSAgICAgICAgICBcbiBNaW4uICAgOjEuMDUwICAgTWluLiAgIDogMC4wMDAgICBNaW4uICAgOjAuMjUxOCAgIE1pbi4gICA6IDAuMDAwICAgTGVuZ3RoOjU3OTY0ICAgICAgXG4gMXN0IFF1LjoxLjMwMCAgIDFzdCBRdS46IDIuNTU4ICAgMXN0IFF1LjowLjg0NzcgICAxc3QgUXUuOiA0LjAwMCAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1lZGlhbiA6MS42MDAgICBNZWRpYW4gOiA1LjY4MCAgIE1lZGlhbiA6MC45OTIxICAgTWVkaWFuIDogOS4wMDAgICBNb2RlICA6Y2hhcmFjdGVyICBcbiBNZWFuICAgOjEuNzQzICAgTWVhbiAgIDogNy4wMDggICBNZWFuICAgOjEuMDMzNSAgIE1lYW4gICA6IDkuNDA2ICAgICAgICAgICAgICAgICAgICAgXG4gM3JkIFF1LjoyLjIwMCAgIDNyZCBRdS46MTEuODUzICAgM3JkIFF1LjoxLjI2MjEgICAzcmQgUXUuOjE0LjAwMCAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6My4wMDAgICBNYXguICAgOjMwLjAwMCAgIE1heC4gICA6Mi42NjAwICAgTWF4LiAgIDoxOS4wMDAgICAgICAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code>      Tpr             Ppr               z               set            range          
+ Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Min.   : 0.000   Length:57964      
+ 1st Qu.:1.300   1st Qu.: 2.558   1st Qu.:0.8477   1st Qu.: 4.000   Class :character  
+ Median :1.600   Median : 5.680   Median :0.9921   Median : 9.000   Mode  :character  
+ Mean   :1.743   Mean   : 7.008   Mean   :1.0335   Mean   : 9.406                     
+ 3rd Qu.:2.200   3rd Qu.:11.853   3rd Qu.:1.2621   3rd Qu.:14.000                     
+ Max.   :3.000   Max.   :30.000   Max.   :2.6600   Max.   :19.000                     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzYXZlIHRpZHkgZGF0YSB0byBSZGEgZmlsZVxuICBzYXZlKHNrX3RpZHksIGZpbGUgPSBcIi4uL2RhdGEvc2tfdGlkeS5yZGFcIiwgY29tcHJlc3MgPSBcInh6XCIpXG5gYGAifQ== -->
+<pre class="r"><code># save tidy data to Rda file
+  save(sk_tidy, file = &quot;../data/sk_tidy.rda&quot;, compress = &quot;xz&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<pre><code>    Tpr             Ppr               z               set        
  Min.   :1.050   Min.   : 0.000   Min.   :0.2518   Min.   : 0.000  
  1st Qu.:1.300   1st Qu.: 2.558   1st Qu.:0.8477   1st Qu.: 4.000  
  Median :1.600   Median : 5.680   Median :0.9921   Median : 9.000  
@@ -199,20 +215,10 @@ summary(sk_tidy)</code></pre>
     range          
  Length:57964      
  Class :character  
- Mode  :character  
-                   
-                   
-                   </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzYXZlIHRpZHkgZGF0YSB0byBSZGEgZmlsZVxuICBzYXZlKHNrX3RpZHksIGZpbGUgPSBcIi4uL2RhdGEvc2tfdGlkeS5yZGFcIiwgY29tcHJlc3MgPSBcInh6XCIpXG5gYGAifQ== -->
-<pre class="r"><code># save tidy data to Rda file
-  save(sk_tidy, file = &quot;../data/sk_tidy.rda&quot;, compress = &quot;xz&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
+ Mode  :character  </code></pre>
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJvdy1iaW5kIExvdyBhbmQgSGlnaCBQcmVzc3VyZSB0YWJsZXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyfQ0KIyBsb2FkIGRhdGFzZXRzDQpkYXRhKCJza190aWR5X2xwIikNCmRhdGEoInNrX3RpZHlfaHAiKQ0KDQojIGFkZCBjb2x1bW4gInJhbmdlIiB0byBpbmRpY2F0ZSBpZiBsb3cgb3IgaGlnaCBwcmVzc3VyZQ0Kc2tfdGlkeV9scFsicmFuZ2UiXSA8LSAibHAiDQpza190aWR5X2hwWyJyYW5nZSJdIDwtICJocCINCg0KIyBiaW5kIHRoZSB0YWJsZXMNCnNrX3RpZHkgPC0gcmJpbmQoc2tfdGlkeV9scCwgc2tfdGlkeV9ocCkNCg0KIyBjb252ZXJ0IGNvbHVtbiAic2V0IiB0byBudW1lcmljDQpza190aWR5JHNldCA8LSBhcy5udW1lcmljKHNrX3RpZHkkc2V0KQ0KDQpzdW1tYXJ5KHNrX3RpZHkpDQpgYGANCmBgYHtyfQ0KIyBzYXZlIHRpZHkgZGF0YSB0byBSZGEgZmlsZQ0KICBzYXZlKHNrX3RpZHksIGZpbGUgPSAiLi4vZGF0YS9za190aWR5LnJkYSIsIGNvbXByZXNzID0gInh6IikNCmBgYA0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJvdy1iaW5kIExvdyBhbmQgSGlnaCBQcmVzc3VyZSB0YWJsZXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyfQ0KIyBsb2FkIGRhdGFzZXRzDQpkYXRhKCJza190aWR5X2xwIikNCmRhdGEoInNrX3RpZHlfaHAiKQ0KDQojIGFkZCBjb2x1bW4gInJhbmdlIiB0byBpbmRpY2F0ZSBpZiBsb3cgb3IgaGlnaCBwcmVzc3VyZQ0Kc2tfdGlkeV9scFsicmFuZ2UiXSA8LSAibHAiDQpza190aWR5X2hwWyJyYW5nZSJdIDwtICJocCINCg0KIyBiaW5kIHRoZSB0YWJsZXMNCnNrX3RpZHkgPC0gcmJpbmQoc2tfdGlkeV9scCwgc2tfdGlkeV9ocCkNCg0KIyBjb252ZXJ0IGNvbHVtbiAic2V0IiB0byBudW1lcmljDQpza190aWR5JHNldCA8LSBhcy5udW1lcmljKHNrX3RpZHkkc2V0KQ0KDQpzdW1tYXJ5KHNrX3RpZHkpDQpgYGANCmBgYHtyfQ0KIyBzYXZlIHRpZHkgZGF0YSB0byBSZGEgZmlsZQ0KICBzYXZlKHNrX3RpZHksIGZpbGUgPSAiLi4vZGF0YS9za190aWR5LnJkYSIsIGNvbXByZXNzID0gInh6IikNCmBgYA0KDQoNCiAgICAgICAgVHByICAgICAgICAgICAgIFBwciAgICAgICAgICAgICAgIHogICAgICAgICAgICAgICBzZXQgICAgICAgIA0KICAgICBNaW4uICAgOjEuMDUwICAgTWluLiAgIDogMC4wMDAgICBNaW4uICAgOjAuMjUxOCAgIE1pbi4gICA6IDAuMDAwICANCiAgICAgMXN0IFF1LjoxLjMwMCAgIDFzdCBRdS46IDIuNTU4ICAgMXN0IFF1LjowLjg0NzcgICAxc3QgUXUuOiA0LjAwMCAgDQogICAgIE1lZGlhbiA6MS42MDAgICBNZWRpYW4gOiA1LjY4MCAgIE1lZGlhbiA6MC45OTIxICAgTWVkaWFuIDogOS4wMDAgIA0KICAgICBNZWFuICAgOjEuNzQzICAgTWVhbiAgIDogNy4wMDggICBNZWFuICAgOjEuMDMzNSAgIE1lYW4gICA6IDkuNDA2ICANCiAgICAgM3JkIFF1LjoyLjIwMCAgIDNyZCBRdS46MTEuODUzICAgM3JkIFF1LjoxLjI2MjEgICAzcmQgUXUuOjE0LjAwMCAgDQogICAgIE1heC4gICA6My4wMDAgICBNYXguICAgOjMwLjAwMCAgIE1heC4gICA6Mi42NjAwICAgTWF4LiAgIDoxOS4wMDAgIA0KICAgICAgICByYW5nZSAgICAgICAgICANCiAgICAgTGVuZ3RoOjU3OTY0ICAgICAgDQogICAgIENsYXNzIDpjaGFyYWN0ZXIgIA0KICAgICBNb2RlICA6Y2hhcmFjdGVyICANCg==</div>
 
 
 

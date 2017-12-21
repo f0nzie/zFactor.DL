@@ -16,7 +16,7 @@ library(xlsx)
   raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
 
 # read the low pressure values of Ppr
-  raw_data <- read.xlsx(raw_file, sheetIndex = 1)
+  raw_data <- read.xlsx(raw_file, sheetIndex = 2)
   
 # colum names of raw dataset
   all_vars <- names(raw_data)
@@ -31,7 +31,12 @@ library(xlsx)
   library(dplyr)
   library(tidyr)
 
-Ppr <- raw_data %>%
+# get rid off all NA columns or rows
+raw_data_nna <- raw_data %>% 
+    select(-starts_with(("NA"))) %>% 
+    drop_na()
+
+Ppr <- raw_data_nna %>%
     select(starts_with("Ppr")) %>%
     rename(Ppr.0 = Ppr) %>%       # add index 0 to make all columns the same
     gather(key, value) %>%        # gather all columns
@@ -39,7 +44,7 @@ Ppr <- raw_data %>%
     rename(Ppr = value)  %>%      # rename value to Ppr
     select(Ppr, set)              # get only these two columns
 
-Tpr <- raw_data %>%
+Tpr <- raw_data_nna %>%
     select(starts_with("Tpr")) %>%
     rename(Tpr.0 = Tpr) %>%
     gather(key, value) %>%        # gather all columns
@@ -47,7 +52,7 @@ Tpr <- raw_data %>%
     rename(Tpr = value)  %>%
     select(Tpr, set)
 
-z <- raw_data %>%
+z <- raw_data_nna %>%
     select(starts_with("z")) %>%
     rename(z.0 = z) %>%
     gather(key, value) %>%        # gather all columns
@@ -65,38 +70,13 @@ z <- raw_data %>%
 
 ```{r}
 # a narrow table with tidy data
-  SK_tidy <- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
+  sk_tidy_hp <- cbind(Tpr = Tpr$Tpr, Ppr = Ppr$Ppr,  z)
+  summary(sk_tidy_hp)
 ```
 
 ```{r}
 # save tidy data to Rda file
-  save(SK_tidy, file = "../data/SK_tidy.rda", compress = "xz")
+  save(sk_tidy_hp, file = "../data/sk_tidy_hp.rda", compress = "xz")
 ```
 
 
-## Save the tidy data with different name
-
-```{r}
-# this will save SK_tidy as sk_tidy
-data("SK_tidy")
-
-sk_tidy <- SK_tidy
-save(sk_tidy, file = "../data/sk_tidy.rda", compress = "xz")
-```
-
-
-
-## high-pressure
-
-```{r cache=TRUE}
-library(xlsx)
-# read original data in Excel
-  raw_file <- system.file("extdata", "SK_data.xls", package = "zFactor.DL")
-
-# read the low pressure values of Ppr
-  raw_data <- read.xlsx(raw_file, sheetIndex = 2)
-  
-# colum names of raw dataset
-  all_vars <- names(raw_data)
-  all_vars
-```
